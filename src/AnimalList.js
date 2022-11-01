@@ -19,6 +19,14 @@ function AnimalList() {
          setAnimal(arr);
         
       };
+      //nekiNiz[saPozicije] = nekiNiz.splice(naPoziciju, 1, nekiNiz[saPozicije])[0];
+      const onTop = (id) => {
+        let newAnimals = animal.map(x => x.id).indexOf(id);
+        let data = [...animal]
+        data.unshift(data.splice(newAnimals, 1)[0]);
+
+        setAnimal(data);
+      }
     
 
 
@@ -40,6 +48,7 @@ function AnimalList() {
                         <td> {item.name}</td>
                         <td>{item.dateOfBirth ? item.dateOfBirth.toString() : "Nepoznat"}</td>
                         <td><button onClick={()=> handleClick(item.id)}>Remove</button></td>
+                        <td><button onClick={()=> onTop(item.id)}>Top</button></td>
                     </tr>
                   ))}
                   </tbody> 
